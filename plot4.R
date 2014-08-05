@@ -7,6 +7,9 @@ data$Date <- as.Date(data$Date, "%d/%m/%Y")
 # Subset data to include only range between dates 2007-02-01 and 2007-02-02
 data <- data[data$Date >= "2007-02-01" & data$Date <= "2007-02-02",]
 
+# Create a field containing both date and time 
+data$datetime <- strptime(paste(data$Date,data$Time), format="%Y-%m-%d %H:%M:%S")
+
 # Transform values to numeric when necessary
 data$Global_active_power <-  as.numeric(as.character(data$Global_active_power))
 data$Global_reactive_power <-  as.numeric(as.character(data$Global_reactive_power))

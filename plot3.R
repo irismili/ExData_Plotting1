@@ -7,6 +7,9 @@ data$Date <- as.Date(data$Date, "%d/%m/%Y")
 # Subset data to include only range between dates 2007-02-01 and 2007-02-02
 data <- data[data$Date >= "2007-02-01" & data$Date <= "2007-02-02",]
 
+# Create a field containing both date and time 
+data$datetime <- strptime(paste(data$Date,data$Time), format="%Y-%m-%d %H:%M:%S")
+
 # Transform values to numeric
 data$Sub_metering_1 <- as.numeric(as.character(data$Sub_metering_1))
 data$Sub_metering_2 <- as.numeric(as.character(data$Sub_metering_2))
